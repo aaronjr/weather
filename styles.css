@@ -1,0 +1,9 @@
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+input{
+    width: 200px;
+    font-size: x-large;
+}
