@@ -40,24 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const feels = Math.round(data.main.feels_like)
         const humidity = data.main.humidity
         const windSpeed = data.wind.speed
-
         const temp = Math.round(data.main.temp)
-
         const sunriseData = new Date(data.sys.sunrise * 1000)
         const riseHours = sunriseData.getHours();
-        var riseMinutes = "0" + sunriseData.getMinutes();
-        var sunrise = `${riseHours}:${riseMinutes.substr(-2)}`
-
+        const riseMinutes = "0" + sunriseData.getMinutes();
+        const sunrise = `${riseHours}:${riseMinutes.substr(-2)}`
         const sunsetData = new Date(data.sys.sunset * 1000)
         const setHours = sunsetData.getHours();
-        var setMinutes = "0" + sunsetData.getMinutes();
-        var sunset = `${setHours}:${setMinutes.substr(-2)}`
-
+        const setMinutes = "0" + sunsetData.getMinutes();
+        const sunset = `${setHours}:${setMinutes.substr(-2)}`
         const description = data.weather[0].main
         const icon = data.weather[0].icon
-
         const location = data.name
-
         const degree = '\u00B0'
         
         // add to a lise
@@ -84,51 +78,91 @@ document.addEventListener('DOMContentLoaded', () => {
         const cityData = await cityResponse.json()
         const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[0].lat}&lon=${cityData[0].lon}&appid=8b05adff7a43d479faf0fb11bb35a2d8&units=metric`)
         const data = await response.json()
+
         // counter for boxid
         let counter = 0
+
+        const seperate = []
+        let next = []
+        let item = 0
         
-        for(let i in data.list){
-            // get it's date and today's date
-            const date = new Date(data.list[i].dt_txt)
+        for (item; item < data.list.length; item++){
+            const date = new Date(data.list[item].dt_txt)
             const today = new Date()
-            // data.list[day]
-            // console.log()
-            const degree = '\u00B0'
 
-            // get info and set strings
-            const day = today.toDateString() === date.toDateString() ? 'Today' : date.toLocaleString('en-uk', {weekday:'long'})
-            const hours = date.getHours().toString().length == 2 ? `${date.getHours()}:00` : `0${date.getHours()}:00`
-            const icon = data.list[i].weather[0].icon
-            const temp = `${Math.round(data.list[i].main.temp)}${degree}C`
-            const rain = `${Math.round(data.list[i].pop * 100)}%`
-
-            // add to a list
-            listofinfo = [
-                day, hours, icon, temp, rain
-            ]
-
-            // create a box, set ID and class
-            const box = document.createElement('div')
-            box.className = 'forecastBox'
-            box.setAttribute('id', `box${counter}`)
-            document.querySelector('.forecast').append(box)
-
-            // add each bit of info to list, checking for an image
-            for(item in listofinfo){
-                small = document.createElement('div')
-                small.className = 'smallDiv'
-                if(item != 2){
-                    small.textContent = listofinfo[item]
-                } else {
-                    image = document.createElement('img')
-                    image.src = `http://openweathermap.org/img/w/${ listofinfo[item] }.png`
-                    small.append(image)
+            if (today.toDateString() === date.toDateString()){
+                let first = []
+                if ( today.toDateString() !== new Date(data.list[item + 1].dt_txt).toDateString()){
+                    first.push(data.list.slice(0, item +1))
+                    seperate.push(first)
                 }
-                // add to page
-                document.getElementById(`box${counter}`).append(small)
+            } else if (!(today.toDateString() === date.toDateString()) && data.list.length > item + 8 ) {
+                next.push(data.list.slice([item], item + 8))
+                item = item + 7
+                seperate.push(next)
+                next = []
+            } else if ( data.list.length < item + 8 ) {
+                next.push(data.list.slice([item]))
+                item = data.list.length
+                seperate.push(next)
             }
-            // increase counter for next box
-            counter += 1
+        }
+        
+        for( let day in seperate){
+            let d = day
+            const date = new Date(seperate[day][0][0].dt_txt)
+            const today = new Date()
+            // create day box
+            const todayBox = document.createElement('div')
+            todayBox.className = 'todayBox'
+            todayBox.setAttribute('id', `day${d}`)
+            todayBox.textContent = today.toDateString() === date.toDateString() ? 'Today' : date.toLocaleString('en-uk', {weekday:'long'})
+            document.querySelector('.forecast').append(todayBox)
+
+            for( let hour in thisDay = seperate[day][0]){
+                
+                // get it's date and today's date
+                const date = new Date(thisDay[hour].dt_txt)
+                const today = new Date()
+                // data.list[day]
+                // console.log()
+                const degree = '\u00B0'
+
+                // get info and set strings
+                // const day = today.toDateString() === date.toDateString() ? 'Today' : date.toLocaleString('en-uk', {weekday:'long'})
+                const hours = date.getHours().toString().length == 2 ? `${date.getHours()}:00` : `0${date.getHours()}:00`
+                const icon = thisDay[hour].weather[0].icon
+                const temp = `${Math.round(thisDay[hour].main.temp)}${degree}C`
+                const rain = `${Math.round(thisDay[hour].pop * 100)}%`
+
+                // add to a list
+                listofinfo = [
+                    hours, icon, temp, rain
+                ]
+
+                // create a box, set ID and class
+                const box = document.createElement('div')
+                box.className = 'forecastBox'
+                box.setAttribute('id', `box${counter}`)
+                document.getElementById(`day${d}`).append(box)
+
+                // add each bit of info to list, checking for an image
+                for(item in listofinfo){
+                    small = document.createElement('div')
+                    small.className = 'smallDiv'
+                    if(item != 1){
+                        small.textContent = listofinfo[item]
+                    } else {
+                        image = document.createElement('img')
+                        image.src = `http://openweathermap.org/img/w/${ listofinfo[item] }.png`
+                        small.append(image)
+                    }
+                    // add to page
+                    document.getElementById(`box${counter}`).append(small)
+                }
+                // increase counter for next box
+                counter += 1
+                }
         }
     }
     // get form and add event listener
