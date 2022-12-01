@@ -8,15 +8,17 @@
 
 body{
     background-color:bisque;
+    overflow: auto;
+    display: grid;
+    grid-template-rows:100px 1fr;
+}
 
+.content{
     display: grid;
     width: 100vw;
-    min-height: 100vh;
-    overflow: scroll;
-   
+    min-height: 100%;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100px 150px 80px;
-    
+    grid-template-rows: 150px 80px;
 }
 
 /* main */
@@ -91,4 +93,25 @@ button{
 }
 .iconimg{
     height:75px;
+}
+
+/* forecast box */
+
+.forecast{
+    display: grid;
+    grid-auto-rows: 50px;
+    margin: 10px;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+.forecastBox{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+.forecastBox  div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
