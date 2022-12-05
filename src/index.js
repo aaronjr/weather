@@ -24,11 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
       form.city.reportValidity();
     });
     
-    getWeatherFourDays(form.city.value);
-    // .catch(() => {
-    //     form.city.setCustomValidity('City not found')
-    //     form.city.reportValidity()
-    // })
+    getWeatherFourDays(form.city.value).catch(() => {
+        form.city.setCustomValidity('City not found')
+        form.city.reportValidity()
+    })
   });
 
   // allow user to change input to valid city,

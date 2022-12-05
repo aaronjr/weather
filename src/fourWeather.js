@@ -12,12 +12,16 @@ export default async function getWeatherFourDays(city) {
     document.getElementById(`circle0`).style.backgroundColor = 'black'
     // get city long and lat details
     const cityResponse = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=8b05adff7a43d479faf0fb11bb35a2d8`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=8b05adff7a43d479faf0fb11bb35a2d8`,{
+        mode: 'cors'
+      }
     );
     const cityData = await cityResponse.json();
     // pass long and lat into second API
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[0].lat}&lon=${cityData[0].lon}&appid=8b05adff7a43d479faf0fb11bb35a2d8&units=metric`
+      `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[0].lat}&lon=${cityData[0].lon}&appid=8b05adff7a43d479faf0fb11bb35a2d8&units=metric`,{
+        mode: 'cors'
+      }
     );
     // convert to JSON
     const data = await response.json();

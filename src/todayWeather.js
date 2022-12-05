@@ -4,7 +4,9 @@ import { addto} from "./functions"
 
 export default async function getWeatherToday(city) {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=8b05adff7a43d479faf0fb11bb35a2d8&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=8b05adff7a43d479faf0fb11bb35a2d8&units=metric`,{
+        mode: 'cors'
+      }
     );
     const data = await response.json();
 
