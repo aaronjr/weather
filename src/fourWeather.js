@@ -25,19 +25,26 @@ export default async function getWeatherFourDays(city) {
     );
     // convert to JSON
     const data = await response.json();
-
+    console.log(data)
     // empty arrays to later be filled
     const seperate = [];
     let next = [];
     let item = 0;
+    
+    const today = new Date();
+    // const firstDate = new Date(data.list[0].dt_txt)
+
+    // if( !(today.toDateString() === firstDate.toDateString())){
+    //   const firstEmpty = [];
+    //   seperate.push(firstEmpty);
+    // }
 
     // splits the whole array into days
     for (item; item < data.list.length; item += 1) {
         
         // new date and todays
       const date = new Date(data.list[item].dt_txt);
-      const today = new Date();
-        
+
       // check if today
       if (today.toDateString() === date.toDateString()) {
         // empty array
@@ -54,7 +61,7 @@ export default async function getWeatherFourDays(city) {
         // if not today and more than 8 items in the array left
       } else if (
         !(today.toDateString() === date.toDateString()) &&
-        data.list.length > item + 8
+        data.list.length >= item + 8
       ) {
         // push the next 8 hour slots into next then add to seperate in it's own array
         next.push(data.list.slice([item], item + 8));
@@ -68,7 +75,7 @@ export default async function getWeatherFourDays(city) {
         seperate.push(next);
       }
     }
-
+    console.log(seperate)
     // pass new array into this function
     // to be added to page
     addFourToPage(seperate)

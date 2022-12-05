@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
       form.city.reportValidity();
     });
     
-    getWeatherFourDays(form.city.value).catch(() => {
+    getWeatherFourDays(form.city.value).catch((e) => {
+        console.log(e)
         form.city.setCustomValidity('City not found')
         form.city.reportValidity()
     })
