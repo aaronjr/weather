@@ -18,7 +18,7 @@ export default function move(d){
         circle.style.backgroundColor = 'white';
     })
 
-    document.getElementById(`circle${counter}`).style.backgroundColor = 'var(--color-grey)'
+    document.getElementById(`circle${counter}`).style.backgroundColor = 'black'
 
     const boxes = document.querySelectorAll('.todayBox')
     boxes.forEach( (b) => {

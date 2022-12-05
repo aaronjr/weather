@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-export default function addFourToPage(seperate){
 
+export default function addFourToPage(seperate){
     // counter for boxid
     let counter = 0;
 

@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@beyonk/google-fonts-webpack-plugin": "^1.7.0",
+    "hammerjs": "^2.0.8",
     "typeface-roboto": "^1.1.13"
   }
 }
