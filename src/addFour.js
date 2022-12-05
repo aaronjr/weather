@@ -7,6 +7,7 @@ export default function addFourToPage(seperate){
 
     // loop over each day
     for (const day in seperate) {
+        console.log(day)
         // today and new date based on the input
         const date = new Date(seperate[day][0][0].dt_txt);
         const today = new Date();
@@ -67,7 +68,7 @@ export default function addFourToPage(seperate){
               small.textContent = listofinfo[item];
             } else {
               const image = document.createElement("img");
-              image.src = `http://openweathermap.org/img/wn/${listofinfo[item]}@2x.png`;
+              image.src = `https://openweathermap.org/img/wn/${listofinfo[item]}@2x.png`;
               image.className = 'icons'
               small.append(image);
             }
