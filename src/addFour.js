@@ -27,7 +27,7 @@ export default function addFourToPage(seperate){
         todayBox.append(p);
 
         // add box to page
-        document.querySelector(".forecast").append(todayBox);
+        document.querySelector(".view").append(todayBox);
 
         // data of this day
         const thisDay = seperate[day][0];
@@ -48,10 +48,9 @@ export default function addFourToPage(seperate){
               : `0${date.getHours()}:00`;
           const { icon } = thisDay[hour].weather[0];
           const temp = `${Math.round(thisDay[hour].main.temp)}${degree}C`;
-          const rain = `${Math.round(thisDay[hour].pop * 100)}%`;
   
           // add to a list
-          const listofinfo = [hours, icon, temp, rain];
+          const listofinfo = [hours, icon, temp];
   
           // create a box for each hour, set ID and class
           const box = document.createElement("div");
@@ -68,7 +67,8 @@ export default function addFourToPage(seperate){
               small.textContent = listofinfo[item];
             } else {
               const image = document.createElement("img");
-              image.src = `http://openweathermap.org/img/w/${listofinfo[item]}.png`;
+              image.src = `http://openweathermap.org/img/wn/${listofinfo[item]}@2x.png`;
+              image.className = 'icons'
               small.append(image);
             }
             // add to page

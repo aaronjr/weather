@@ -1,3 +1,7 @@
+:root{
+  --color-grey: #918d8d;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +24,7 @@ h1 {
   padding-left: 0px;
   text-align: center;
   font-size: 2rem;
-  color: #918d8d;
+  color:var(--color-grey);
 }
 .content {
   display: grid;
@@ -109,22 +113,41 @@ button {
 .iconimg {
   height: 75px;
 }
+/* box controls */
+.buttonHolder{
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px;
+}
+.SVGHOLDER{
+  display: grid;
+  place-items: center;
+}
+.circle{
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
 
 /* forecast box */
-
-.forecast {
+.forecast{
   display: grid;
-  grid-template-columns: repeat(6, 350px);
   overflow: auto;
-  margin: 10px;
   grid-column-start: 1;
   grid-column-end: 4;
+}
+.view{
+  display: grid;
+  overflow: auto;
+  margin: 10px;
   gap: 10px;
   padding-bottom: 20px;
 }
 .forecastBox {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   justify-content: center;
 }
@@ -135,13 +158,19 @@ button {
 }
 
 .todayBox {
+  display: none;
+  flex-direction: column;
   text-align: center;
-  border: solid white 3px;
   border-radius: 0.5rem;
-  box-shadow: 5px 5px 5px grey;
+  box-shadow: 5px 5px 5px 5px var(--color-grey);
   height: min-content;
   padding: 5px;
+  margin: 5px;
 }
+.todayBox:nth-child(1){
+  display: flex;
+}
+
 .todayBox > p {
   margin: 10px;
   font-size: 1.3rem;
@@ -151,6 +180,9 @@ button {
   background-color: #ffffff40;
 }
 
+.icons{
+  height: 45px;
+}
 /* NAV */
 nav {
   height: min-content;

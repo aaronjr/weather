@@ -15,7 +15,7 @@ export function addto(where, info) {
         const image = document.createElement("img");
         image.className = "iconimg";
         image.alt = "Today's weather icon";
-        image.src = `http://openweathermap.org/img/w/${info}.png`;
+        image.src = `http://openweathermap.org/img/wn/${info}@2x.png`;;
         document.querySelector(".icon").append(image);
     } else {
         const p = document.createElement("p");

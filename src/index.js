@@ -5,6 +5,7 @@ import "./style.css";
 import "typeface-roboto";
 import getWeatherToday from "./todayWeather"
 import getWeatherFourDays from "./fourWeather"
+import move from "./move"
 
 // import Icon from './icon.png';
 
@@ -36,4 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     form.city.setCustomValidity("");
     form.city.reportValidity();
   });
+
+  const control = document.querySelectorAll('.control')
+  control.forEach( button => {
+    // eslint-disable-next-line func-names
+    button.addEventListener('click', function(){  
+      // eslint-disable-next-line no-unused-expressions
+      this.id === 'buttonRight' ? move('right') : move('left');
+    })
+  })
 });
