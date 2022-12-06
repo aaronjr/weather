@@ -13,7 +13,7 @@
     // stop after moving bar after 8000
     setInterval(() => {
       clearInterval(moveBar)
-    }, 8000)
+    }, 15000)
 
     // ontouch stop movement
     document.getElementById('search').addEventListener('click', () => {
@@ -24,4 +24,8 @@
     bottom.addEventListener('mouseover', () => {
       clearInterval(moveBar)
     })
+
+    bottom.addEventListener('touchmove', () => {
+        clearInterval(moveBar)
+      })
 }
