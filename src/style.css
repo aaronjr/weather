@@ -208,3 +208,23 @@ nav {
   width: 50%;
   border-radius: 0% 5rem 5rem 0%;
 }
+
+.C, .F {
+  color: white;
+  border-radius: .5rem;
+  height: 40px;
+  aspect-ratio: 1/1;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0px 2px;
+}
+.C{
+  display: block;
+}
+.F{
+ display: block;
+}
+
+.hide{
+  display: none;
+}

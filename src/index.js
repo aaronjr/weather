@@ -4,10 +4,9 @@
 import "./style.css";
 import "typeface-roboto";
 import getWeatherToday from "./todayWeather"
+// eslint-disable-next-line import/no-cycle
 import getWeatherFourDays from "./fourWeather"
 import move from "./move"
-
-// import Icon from './icon.png';
 
 document.addEventListener("DOMContentLoaded", () => {
 

@@ -2,6 +2,7 @@ import { addto} from "./functions"
 import moveBottom from "./moveBottom"
 
 // get today's weather async
+// small.className = measure === 'C' ? "smallDiv degreeOfC" : "smallDiv degreeOfF";
 
 export default async function getWeatherToday(city) {
     const response = await fetch(

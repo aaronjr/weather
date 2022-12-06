@@ -1,10 +1,12 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 
-export default function addFourToPage(seperate){
+// Degree symbol
+const degree = "\u00B0";
+
+export default function addFourToPage(seperate, measure){
     // counter for boxid
     let counter = 0;
-
     // loop over each day
     for (const day in seperate) {
         // today and new date based on the input
@@ -38,8 +40,6 @@ export default function addFourToPage(seperate){
           // get it's date and today's date
           // eslint-disable-next-line no-shadow
           const date = new Date(thisDay[hour].dt_txt);
-          // Degree symbol
-          const degree = "\u00B0";
   
           // get info and set strings
           const hours =
@@ -47,7 +47,8 @@ export default function addFourToPage(seperate){
               ? `${date.getHours()}:00`
               : `0${date.getHours()}:00`;
           const { icon } = thisDay[hour].weather[0];
-          const temp = `${Math.round(thisDay[hour].main.temp)}${degree}C`;
+          const temp = measure === 'C' ? `${Math.round(thisDay[hour].main.temp)}${degree}C` :
+          `${Math.round(thisDay[hour].main.temp)}${degree}F`;
   
           // add to a list
           const listofinfo = [hours, icon, temp];
@@ -62,7 +63,7 @@ export default function addFourToPage(seperate){
           // eslint-disable-next-line no-restricted-syntax
           for (const item in listofinfo) {
             const small = document.createElement("div");
-            small.className = "smallDiv";
+            small.className = measure === 'C' ? "smallDiv degreeOfC" : "smallDiv degreeOfF";
             if (item !== '1') {
               small.textContent = listofinfo[item];
             } else {
@@ -71,6 +72,7 @@ export default function addFourToPage(seperate){
               image.className = 'icons'
               small.append(image);
             }
+            small.style.display = small.className === "smallDiv degreeOfC" ? 'block' : 'none'
             // add to page
             document.getElementById(`box${counter}`).append(small);
           }
@@ -78,4 +80,5 @@ export default function addFourToPage(seperate){
           counter += 1;
         }
       }
+
 }
