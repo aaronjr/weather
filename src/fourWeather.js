@@ -9,7 +9,7 @@ export default async function getWeatherFourDays(city) {
     // remove existing data if second search 
     document.querySelector('.buttonHolder').style.display = 'flex'
     clear("view");
-    document.getElementById(`circle0`).style.backgroundColor = 'var(--color-blue)3'
+    document.getElementById(`circle0`).style.backgroundColor = 'black'
     // get city long and lat details
     const cityResponse = await fetch(
       `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=8b05adff7a43d479faf0fb11bb35a2d8`,{
