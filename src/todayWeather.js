@@ -63,6 +63,6 @@ export default async function getWeatherToday(city) {
     for (const item in listofinfo) {
       addto(listoflocations[item], listofinfo[item]);
     }
-
+    
     moveBottom()
   }

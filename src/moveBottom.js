@@ -14,18 +14,19 @@
     setInterval(() => {
       clearInterval(moveBar)
     }, 15000)
-
+    
     // ontouch stop movement
     document.getElementById('search').addEventListener('click', () => {
-      clearInterval(moveBar)
-    })
-
-    // on new search stop event so it can restart
-    bottom.addEventListener('mouseover', () => {
-      clearInterval(moveBar)
-    })
-
-    bottom.addEventListener('touchmove', () => {
         clearInterval(moveBar)
-      })
+    })
+
+    // // on new search stop event so it can restart
+    bottom.addEventListener('mouseover', () => {
+        clearInterval(moveBar)
+    })
+
+    // on touch - phone, stop movebar
+    bottom.addEventListener('touchstart', () => {
+        clearInterval(moveBar)
+    })
 }
