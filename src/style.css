@@ -196,6 +196,7 @@ button {
 }
 /* NAV */
 nav {
+  background-color: var(--color-blue);
   height: 100%;
 }
 
