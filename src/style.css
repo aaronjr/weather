@@ -1,5 +1,6 @@
 :root{
   --color-grey: #918d8d;
+  --color-blue: #4893cc;
 }
 
 * {
@@ -16,15 +17,15 @@ body {
   background-size: cover;
   overflow: auto;
   display: grid;
-  grid-template-rows: 77.5px 50px 1fr;
+  grid-template-rows: 120px 100px 1fr;
 }
 
 h1 {
   padding: 20px;
   padding-left: 0px;
   text-align: center;
-  font-size: 2rem;
-  color:var(--color-grey);
+  font-size: 3rem;
+  color:var(--color-blue);
 }
 .content {
   display: grid;
@@ -41,7 +42,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .right {
@@ -50,7 +51,12 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.left, 
+.right{
+  color:white;
 }
 
 .bottom {
@@ -64,11 +70,6 @@ h1 {
   overflow: auto;
 }
 
-.left, 
-.right, 
-.bottom{
-  color:white;
-}
 .bottom p {
   font-size: 1.5rem;
   white-space: nowrap;
@@ -91,7 +92,8 @@ input {
   padding-left: 10px;
   border: none;
   border-radius: 0.5rem;
-  height: 25.5px;
+  height: 40px;
+  font-size: 1.5rem;
 }
 
 button {
@@ -99,18 +101,19 @@ button {
   border: none;
   border-radius: 0.5rem;
   background-color: white;
+  height: 40px;
 }
 
 /* items from daily */
 
 .tempWritting {
-  font-size: 3rem;
-  height: 70px;
+  font-size: 4rem;
+  height: min-content;
 }
 
 .cityWritting {
-  font-size: 2rem;
-  font-weight: 200;
+  font-size: 2.5rem;
+  font-weight: 300;
 }
 .icon {
   height: 60px;
@@ -123,7 +126,7 @@ button {
   display: none;
   justify-content: space-between;
   align-items: center;
-  margin: 40px;
+  margin: 10px 40px;
 }
 .SVGHOLDER{
   display: grid;
@@ -140,9 +143,11 @@ button {
 /* forecast box */
 .forecast{
   display: grid;
+  grid-template-rows: auto 1fr;
   overflow: auto;
   grid-column-start: 1;
   grid-column-end: 4;
+  min-height: 530px;
 }
 .view{
   display: grid;
@@ -182,7 +187,7 @@ button {
   font-size: 1.3rem;
 }
 
-.todayBox .forecastBox:nth-child(odd) {
+.todayBox .forecastBox:nth-child(even) {
   background-color: #ffffff40;
 }
 
@@ -191,7 +196,7 @@ button {
 }
 /* NAV */
 nav {
-  height: min-content;
+  height: 100%;
 }
 
 .navcorner {
@@ -199,7 +204,7 @@ nav {
   align-items: center;
   justify-content: center;
   background-color: white;
-  height: min-content;
+  height: 100%;
   width: 50%;
   border-radius: 0% 5rem 5rem 0%;
 }

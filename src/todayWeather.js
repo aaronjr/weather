@@ -1,4 +1,5 @@
 import { addto} from "./functions"
+import moveBottom from "./moveBottom"
 
 // get today's weather async
 
@@ -62,4 +63,6 @@ export default async function getWeatherToday(city) {
     for (const item in listofinfo) {
       addto(listoflocations[item], listofinfo[item]);
     }
+
+    moveBottom()
   }
