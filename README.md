@@ -1,4 +1,4 @@
-# weather
+# Weather
 
 ### Weather website using openweather API.
 - Users are able to search over 200,000 cities.
