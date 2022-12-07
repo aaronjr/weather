@@ -3,10 +3,10 @@ import todayInfo from "./todayInfo";
 import emptyTop from "./emptyTop";
 
 // get today's weather async
-// small.className = measure === 'C' ? "smallDiv degreeOfC" : "smallDiv degreeOfF";
-
 export default async function getWeatherToday(city) {
+  // clear info ready for new info and avoid duplications
   emptyTop()
+  // two fetch, one for C and one for F
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=8b05adff7a43d479faf0fb11bb35a2d8&units=metric`,{
         mode: 'cors'
@@ -23,6 +23,6 @@ export default async function getWeatherToday(city) {
     todayInfo(data, 'C')
     todayInfo(dataF, 'F')
     
+    // load moving container
     moveBottom()
-    // switchUnit()
   }

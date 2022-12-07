@@ -9,7 +9,6 @@ import move from "./move"
 
 document.addEventListener("DOMContentLoaded", () => {
 
-
   // get form and add event listener
   const form = document.querySelector("form");
 
