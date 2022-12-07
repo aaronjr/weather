@@ -11,7 +11,16 @@ export default async function getWeatherFourDays(city) {
     // remove existing data if second search 
     document.querySelector('.buttonHolder').style.display = 'flex'
     clear("view");
+    // set all circles to be white
+    const circles = document.querySelectorAll('.circle')
+    circles.forEach(circle => {
+      // eslint-disable-next-line no-param-reassign
+      circle.style.backgroundColor = 'white'
+    })
+    // set first circle to active
     document.getElementById(`circle0`).style.backgroundColor = 'black'
+
+
     // get city long and lat details
     const cityResponse = await fetch(
       `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=8b05adff7a43d479faf0fb11bb35a2d8`,{
@@ -45,4 +54,5 @@ export default async function getWeatherFourDays(city) {
     addFourToPage(seperateTwo, 'F')
     
     switchUnit()
+  
   }

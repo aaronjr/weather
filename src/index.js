@@ -4,11 +4,11 @@
 import "./style.css";
 import "typeface-roboto";
 import getWeatherToday from "./todayWeather"
-// eslint-disable-next-line import/no-cycle
 import getWeatherFourDays from "./fourWeather"
 import move from "./move"
 
 document.addEventListener("DOMContentLoaded", () => {
+
 
   // get form and add event listener
   const form = document.querySelector("form");
@@ -23,11 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
       form.city.reportValidity();
     });
     
-    getWeatherFourDays(form.city.value).catch((e) => {
-        console.log(e)
+    getWeatherFourDays(form.city.value).catch(() => {
         form.city.setCustomValidity('City not found')
         form.city.reportValidity()
-    })
+    })    
   });
 
   // allow user to change input to valid city,
