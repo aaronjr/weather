@@ -80,5 +80,4 @@ export default function addFourToPage(seperate, measure){
           counter += 1;
         }
       }
-
 }

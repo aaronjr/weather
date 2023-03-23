@@ -19,7 +19,7 @@ export default async function getWeatherToday(city) {
     );
     const data = await response.json();
     const dataF = await responseF.json();
-
+    
     todayInfo(data, 'C')
     todayInfo(dataF, 'F')
     

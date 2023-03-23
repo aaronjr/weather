@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     // stop full submit
     event.preventDefault();
-
     // pass through to get today's weather
     getWeatherToday(form.city.value).catch(() => {
       form.city.setCustomValidity("City not found");

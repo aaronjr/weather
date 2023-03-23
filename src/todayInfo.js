@@ -1,6 +1,8 @@
 import { addto} from "./functions";
 
-export default function todayInfo ( data, symbol ){
+let counter = 0
+export default function todayInfo(data, symbol) {
+    console.log("todayinfo")
     // get needed info
     const clouds = data.clouds.all;
     const feels = Math.round(data.main.feels_like);
@@ -56,5 +58,12 @@ export default function todayInfo ( data, symbol ){
     // eslint-disable-next-line no-restricted-syntax, guard-for-in
     for (const item in listofinfo) {
       addto(listoflocations[item], listofinfo[item], symbol);
+    }
+  
+  if (counter === 0) {
+      document.querySelector(".top-section").className += " borders";
+      document.querySelector(".forecast").className += " borders";
+    document.querySelector(".bottom").className += " bottomBorderTop";
+    counter +=1 
     }
 }
