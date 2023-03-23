@@ -39,8 +39,10 @@ h1 {
 }
 .content {
   display: grid;
-  width: 100%;
+
   grid-template-columns: 1fr;
+  width: 90%;
+   justify-self: center;
 }
 
 .top-section{
